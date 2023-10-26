@@ -1,12 +1,11 @@
 
-const { Octokit } = require("@octokit/rest");
-import {getInput, warning} from '@actions/core'
+const core = require('@actions/core');
 const github = require('@actions/github');
-import {context as githubContext} from '@actions/github'
+const { context } = require('@actions/github')
 // const openai = require("openai");
 
 
-const token = getInput('GITHUB_TOKEN') || process.env.GITHUB_TOKEN
+const token = core.getInput('GITHUB_TOKEN') || process.env.GITHUB_TOKEN
 
 const octokit = github.getOctokit(token);
 
@@ -14,7 +13,6 @@ const octokit = github.getOctokit(token);
 const githubEvent = 'pull_request_review_comment'
 
 async function main() {
-    const context = githubContext
 //   const pr = process.env.GITHUB_EVENT_PATH;
   
   // Parse the PR data
@@ -31,4 +29,4 @@ async function main() {
   });
 }
 
-main();
+main(); 
